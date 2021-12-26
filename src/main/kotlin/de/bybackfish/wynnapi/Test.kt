@@ -1,4 +1,5 @@
 import de.bybackfish.wynnapi.WynnStats
+import de.bybackfish.wynnapi.items.ItemCategory
 import kotlin.reflect.KClass
 
 fun main() {
@@ -6,19 +7,21 @@ fun main() {
         updateInterval = 3000
     );
 
-    val res = stats.getPlayerCached("Keldorn")
-    if(res == null){
-        println("Player not found!")
+
+    val p = stats.getPlayer("Keldorn")
+    if(p == null){
+        println("Player null!")
         return;
     }
-    val player = res.getData()
-    printParams(player, player::class)
+
+    println("Player: ${p.data[0].rank}")
+
 
 }
 
+
 // just prints all fields and their objects using reflection (used it for testing and seeing if gson would get all elements)
 fun printParams(origin: Any, c: KClass<*>, i: Int = 0) {
-    val a = i;
    c.java.declaredFields.forEach { it ->
        it.isAccessible = true
        val spaces = "   ".repeat(i)
@@ -38,7 +41,7 @@ fun printParams(origin: Any, c: KClass<*>, i: Int = 0) {
                }
            } else {
                println(spaces + "# " + it.name.camelCase())
-               printParams(it.get(origin), it.get(origin)::class, a + 1);
+               printParams(it.get(origin), it.get(origin)::class, i + 1);
            }
        }
    }

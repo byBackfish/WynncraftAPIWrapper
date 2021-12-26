@@ -1,8 +1,15 @@
 package de.bybackfish.wynnapi
 
 import com.google.gson.Gson
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import de.bybackfish.wynnapi.items.ItemCategory
+import de.bybackfish.wynnapi.guilds.Guild
+import de.bybackfish.wynnapi.guilds.GuildList
+import de.bybackfish.wynnapi.items.Items
+import de.bybackfish.wynnapi.network.PlayerSum
+import de.bybackfish.wynnapi.network.ServerList
 import de.bybackfish.wynnapi.player.Player
 import java.io.BufferedReader
 import java.io.IOException
@@ -13,43 +20,63 @@ import java.net.URLConnection
 
 
 class WynnStats(
-    private val url: String = "https://api.wynncraft.com/v2/player/",
+    private val url: String = "https://api.wynncraft.com/",
     private val updateInterval: Int = 300000
     ) {
 
-    private val playerCache: HashMap<String, Pair<Long, Player>> = HashMap()
-
     fun getPlayer(nameOrUUID: String): Player? {
-        val name = nameOrUUID.replace("-", "")
-        val gson = Gson()
-        val jsonUrl = "$url/$name/stats"
-        var json: JsonObject? = null;
-       try{
-           json = getFromUrl(jsonUrl)
-       }catch (e: Exception){
-        return null;
-       }
-        return gson.fromJson(json, Player::class.java)
+        val url = this.url + "v2/player/$nameOrUUID/stats"
+        return fetch<Player>(url)
+    }
+    fun getGuilds(): GuildList? {
+        val url = "${this.url}public_api.php?action=guildList"
+        return fetch<GuildList>(url)
     }
 
-    fun getPlayerCached(username: String): Player? {
-        if (playerCache.containsKey(username)) {
-            val pair: Pair<Long, Player>? = playerCache[username]
-            if (pair != null) {
-                if (pair.first + updateInterval <= System.currentTimeMillis()) {
-                    val playerData: Player = getPlayer(username) ?: return null
-                    playerCache[username!!] = Pair(System.currentTimeMillis(), playerData)
-                    println("Found outdated Player in Cache")
-                    return playerData
-                }
+    fun getGuild(name: String): Guild? {
+        val url = "${this.url}public_api.php?action=guildStats&command=$name"
+        return fetch<Guild>(url)
+    }
+
+    fun getIngredientsByName(name: String): Items? {
+        val url = "${this.url}public_api.php?action=itemDB&search=$name"
+        return fetch<Items>(url)
+    }
+
+    fun getIngredientsByCategory(category: ItemCategory): Items? {
+        val url = "${this.url}public_api.php?action=itemDB&category=${category.name.toLowerCase()}"
+        return fetch<Items>(url)
+    }
+
+    fun getServers(): ServerList? {
+        val gson = Gson()
+        val json = getFromUrl("${this.url}public_api.php?action=onlinePlayers")
+        val list = gson.fromJson(json, ServerList::class.java)
+
+        for (mutableEntry in json.entrySet()) {
+            if(mutableEntry.key != "request"){
+                val server = mutableEntry.key
+                val players= gson.fromJson(mutableEntry.value.toString(), Array<String>::class.java)
+                list.servers[server] = players
             }
-            println("Found Player in Cache")
-            return playerCache[username]!!.second
         }
-        val playerData: Player = getPlayer(username) ?: return null
-        println("Registering new Player in Cache")
-        playerCache[username] = Pair(System.currentTimeMillis(), playerData)
-        return playerData
+        return list;
+    }
+
+    fun getPlayerCount(): PlayerSum? {
+        val url = "${this.url}public_api.php?action=onlinePlayersSum"
+        return fetch<PlayerSum>(url)
+    }
+
+
+    private inline fun <reified T> fetch(url: String): T? {
+        val gson = Gson()
+        return try {
+            val json = getFromUrl(url)
+            gson.fromJson(json, T::class.java)
+        } catch (e: Exception) {
+            null
+        }
     }
 
     private fun getFromUrl(url: String): JsonObject {
@@ -62,12 +89,11 @@ class WynnStats(
 
     @Throws(IOException::class)
     private fun readJsonUrl(url: String): JsonObject {
-        val jElement = JsonParser().parse(getPage(url))
+        val jElement = JsonParser().parse(getContents(url))
         return jElement.asJsonObject
     }
-
     @Throws(IOException::class)
-    private fun getPage(url: String): String {
+    private fun getContents(url: String): String {
         val url1 = URL(url)
         val conn: URLConnection = url1.openConnection()
         conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 5.1; rv:19.0) Gecko/20100101 Firefox/19.0")

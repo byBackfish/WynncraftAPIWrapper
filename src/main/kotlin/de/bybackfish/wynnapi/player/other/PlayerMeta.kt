@@ -1,5 +1,7 @@
 package de.bybackfish.wynnapi.player.other
 
+import java.util.*
+
 class PlayerMeta {
 
     val firstJoin: String? = null

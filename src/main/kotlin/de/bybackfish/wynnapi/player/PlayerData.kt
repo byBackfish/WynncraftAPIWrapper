@@ -11,7 +11,7 @@ class PlayerData {
     val rank: String? = null
     val uuid: String? = null
 
-    val meta: PlayerMeta? = null
+    val meta: PlayerMeta = PlayerMeta()
     val classes = ArrayList<PlayerClasses>()
     val guild = PlayerGuild()
     val ranking = PlayerRanking()
