@@ -1,8 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.3.61"
-    application
+    kotlin("jvm") version "latest.release"
 }
 
 group = "de.bybackfish"
