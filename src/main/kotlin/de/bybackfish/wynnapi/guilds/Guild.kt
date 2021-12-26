@@ -15,5 +15,4 @@ class Guild {
     val banner = GuildBanner();
 
     val request = RequestData()
-
 }

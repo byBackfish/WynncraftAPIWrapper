@@ -8,16 +8,22 @@ fun main() {
     );
 
 
-    val p = stats.getPlayer("Keldorn")
-    if(p == null){
-        println("Player null!")
-        return;
-    }
-
-    println("Player: ${p.data[0].rank}")
-
+    val player = stats.getPlayer("h1red")!!
+    println(player.data[0].classes[0].name)
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // just prints all fields and their objects using reflection (used it for testing and seeing if gson would get all elements)
