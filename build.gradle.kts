@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "latest.release"
     `maven-publish`
+    `java-library`
 }
 
 
