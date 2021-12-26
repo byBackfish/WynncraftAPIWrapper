@@ -2,7 +2,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "latest.release"
+    `maven-publish`
 }
+
 
 group = "de.bybackfish"
 version = "1.0-SNAPSHOT"
