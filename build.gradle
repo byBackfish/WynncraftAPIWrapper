@@ -1,6 +1,19 @@
 plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version 'latest.release'
+    id 'maven-publish'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'de.bybackfish'
+            artifactId = 'wynncraftapiwrapper'
+            version = '0.1'
+
+            from components.java
+        }
+    }
 }
 
 group 'de.bybackfish'
