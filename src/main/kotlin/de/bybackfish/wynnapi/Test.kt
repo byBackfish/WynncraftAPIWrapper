@@ -1,5 +1,5 @@
 import de.bybackfish.wynnapi.WynnStats
-import de.bybackfish.wynnapi.items.ItemCategory
+import java.util.*
 import kotlin.reflect.KClass
 
 fun main() {
@@ -25,10 +25,10 @@ fun printParams(origin: Any, c: KClass<*>, i: Int = 0) {
    c.java.declaredFields.forEach { it ->
        it.isAccessible = true
        val spaces = "   ".repeat(i)
-       if(it.type.name.containLC("String") || it.type.name.containLC("int") || it.type.name.containLC("long") || it.type.name.containLC("double") || it.type.name.containLC("float") || it.type.name.containLC("boolean")) {
+       if(it.type.name.containsIgnoreCase("String") || it.type.name.containsIgnoreCase("int") || it.type.name.containsIgnoreCase("long") || it.type.name.containsIgnoreCase("double") || it.type.name.containsIgnoreCase("float") || it.type.name.containsIgnoreCase("boolean")) {
            println("${spaces}- ${it.name.camelCase()} : ${it.get(origin)}")
        } else {
-           if(it.type.name.containLC("List")){
+           if(it.type.name.containsIgnoreCase("List")){
                val list = it.get(origin) as List<*>
                        list.forEachIndexed(){index, item ->
                 if(item is String || item is Int || item is Number || item is Boolean){
@@ -49,8 +49,8 @@ fun printParams(origin: Any, c: KClass<*>, i: Int = 0) {
 
 
 fun String.camelCase(): String {
-    return this.split("_").joinToString(" ") { it.capitalize() }
+    return this.split("_").joinToString(" ") { it -> it.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } }
 }
-fun String.containLC(s: String): Boolean {
-    return this.toLowerCase().contains(s.toLowerCase())
+fun String.containsIgnoreCase(s: String): Boolean {
+    return this.lowercase().contains(s.lowercase())
 }

@@ -44,7 +44,7 @@ class WynnStats(
     }
 
     fun getIngredientsByCategory(category: ItemCategory): Items? {
-        val url = "${this.url}public_api.php?action=itemDB&category=${category.name.toLowerCase()}"
+        val url = "${this.url}public_api.php?action=itemDB&category=${category.name.lowercase()}"
         return fetch<Items>(url)
     }
 
