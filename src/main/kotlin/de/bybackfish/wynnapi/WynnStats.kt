@@ -14,7 +14,7 @@ import java.net.URLConnection
 
 class WynnStats(
     private val url: String = "https://api.wynncraft.com/v2/player/",
-    private val updateInterval: Int = 300000,
+    private val updateInterval: Int = 300000
     ) {
 
     private val playerCache: HashMap<String, Pair<Long, Player>> = HashMap()
