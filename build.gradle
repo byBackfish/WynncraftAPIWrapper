@@ -33,16 +33,6 @@ dependencies {
 }
 
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-    archiveClassifier.set("sources")
-    from sourceSets.main.allSource
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    archiveClassifier.set("javadoc")
-    from javadoc.destinationDir
-}
-
 compileKotlin {
     kotlinOptions {
         jvmTarget = "1.8"

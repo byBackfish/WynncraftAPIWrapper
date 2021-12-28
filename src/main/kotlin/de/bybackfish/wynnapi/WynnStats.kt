@@ -38,12 +38,12 @@ class WynnStats(
         return fetch<Guild>(url)
     }
 
-    fun getIngredientsByName(name: String): Items? {
+    fun getItemsByName(name: String): Items? {
         val url = "${this.url}public_api.php?action=itemDB&search=$name"
         return fetch<Items>(url)
     }
 
-    fun getIngredientsByCategory(category: ItemCategory): Items? {
+    fun getItemsByCategory(category: ItemCategory): Items? {
         val url = "${this.url}public_api.php?action=itemDB&category=${category.name.lowercase()}"
         return fetch<Items>(url)
     }
