@@ -14,4 +14,18 @@ dependencies {
 }
 ```
 
-* See more on (Jitpack!)[https://jitpack.io/#byBackfish/WynncraftAPiWrapper/-SNAPSHOT]
+* See more on [Jitpack](https://jitpack.io/#byBackfish/WynncraftAPiWrapper/-SNAPSHOT)
+
+# Usage
+
+```kotlin
+val stats = WynnStats()
+val player = stats.getPlayer("Keldorn") ?: return println("Player not found!")
+val data = player.getData() 
+val classes = player.classes
+val class = classes[0]
+// do stuff here
+
+```
+
+* Works similar in Java. Above is a Kotlin example
