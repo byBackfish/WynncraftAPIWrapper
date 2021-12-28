@@ -3,7 +3,7 @@
 
 # Installation
 
-```
+```gradle
 // Add this to your build.gradle
 repositories {
 			maven { url 'https://jitpack.io' }
@@ -23,7 +23,7 @@ val stats = WynnStats()
 val player = stats.getPlayer("Keldorn") ?: return println("Player not found!")
 val data = player.getData() 
 val classes = player.classes
-val class = classes[0]
+val firstClass = classes[0]
 // do stuff here
 
 ```
