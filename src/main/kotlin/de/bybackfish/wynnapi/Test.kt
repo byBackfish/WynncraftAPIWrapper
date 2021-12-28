@@ -4,7 +4,7 @@ import kotlin.reflect.KClass
 
 fun main() {
     val stats = WynnStats(
-        updateInterval = 3000
+
     )
 
 
