@@ -1,12 +1,11 @@
 package de.bybackfish.wynnapi
 
 import com.google.gson.Gson
-import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import de.bybackfish.wynnapi.items.ItemCategory
 import de.bybackfish.wynnapi.guilds.Guild
 import de.bybackfish.wynnapi.guilds.GuildList
+import de.bybackfish.wynnapi.items.ItemCategory
 import de.bybackfish.wynnapi.items.Items
 import de.bybackfish.wynnapi.network.PlayerSum
 import de.bybackfish.wynnapi.network.ServerList
@@ -14,20 +13,19 @@ import de.bybackfish.wynnapi.player.Player
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
-import java.lang.Exception
 import java.net.URL
 import java.net.URLConnection
 
 
 class WynnStats(
     private val url: String = "https://api.wynncraft.com/",
-    private val updateInterval: Int = 300000
-    ) {
+) {
 
     fun getPlayer(nameOrUUID: String): Player? {
         val url = this.url + "v2/player/$nameOrUUID/stats"
         return fetch<Player>(url)
     }
+
     fun getGuilds(): GuildList? {
         val url = "${this.url}public_api.php?action=guildList"
         return fetch<GuildList>(url)
@@ -54,13 +52,13 @@ class WynnStats(
         val list = gson.fromJson(json, ServerList::class.java)
 
         for (mutableEntry in json.entrySet()) {
-            if(mutableEntry.key != "request"){
+            if (mutableEntry.key != "request") {
                 val server = mutableEntry.key
-                val players= gson.fromJson(mutableEntry.value.toString(), Array<String>::class.java)
+                val players = gson.fromJson(mutableEntry.value.toString(), Array<String>::class.java)
                 list.servers[server] = players
             }
         }
-        return list;
+        return list
     }
 
     fun getPlayerCount(): PlayerSum? {
@@ -92,6 +90,7 @@ class WynnStats(
         val jElement = JsonParser().parse(getContents(url))
         return jElement.asJsonObject
     }
+
     @Throws(IOException::class)
     private fun getContents(url: String): String {
         val url1 = URL(url)

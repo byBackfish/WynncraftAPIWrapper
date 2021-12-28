@@ -12,7 +12,7 @@ class Guild {
     val created: String? = null
     val createdFriendly: String? = null
     val territories: Int = 0
-    val banner = GuildBanner();
+    val banner = GuildBanner()
 
     val request = RequestData()
 }

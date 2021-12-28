@@ -4,7 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 class GuildBannerLayer {
 
-    @SerializedName("colour") val color: String? = null
+    @SerializedName("colour")
+    val color: String? = null
     val pattern: String? = null
 
 }

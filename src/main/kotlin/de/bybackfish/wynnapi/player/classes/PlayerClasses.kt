@@ -10,29 +10,29 @@ import de.bybackfish.wynnapi.player.classes.skills.PlayerSkills
 
 class PlayerClasses {
 
-    val name: String? = null;
-    val level: Int = 0;
-    val dungeons = PlayerDungeons();
-    val raids = PlayerRaids();
+    val name: String? = null
+    val level: Int = 0
+    val dungeons = PlayerDungeons()
+    val raids = PlayerRaids()
     val quests = PlayerQuests()
     val pvp = PlayerPVP()
 
-    val itemsIdentified: Long = 0;
-    val mobsKilled: Long = 0;
-    val chestsFound: Long = 0;
-    val blocksWalked: Long = 0;
+    val itemsIdentified: Long = 0
+    val mobsKilled: Long = 0
+    val chestsFound: Long = 0
+    val blocksWalked: Long = 0
 
-    val logins: Long = 0;
-    val deaths: Long = 0;
-    val playtime: Long = 0;
+    val logins: Long = 0
+    val deaths: Long = 0
+    val playtime: Long = 0
 
     val gamemode = PlayerGamemode()
     val skills = PlayerSkills()
     val professions = PlayerProfessions()
-    
-    val discoveries: Int = 0;
+
+    val discoveries: Int = 0
     val eventsWon: Int = 0
-    val preEconomyUpdate: Boolean = false;
+    val preEconomyUpdate: Boolean = false
 
 
 }

@@ -7,6 +7,7 @@ class PlayerSum {
 
     val request = RequestData()
 
-    @SerializedName("players_online") val playerCount: Int = 0
+    @SerializedName("players_online")
+    val playerCount: Int = 0
 
 }
