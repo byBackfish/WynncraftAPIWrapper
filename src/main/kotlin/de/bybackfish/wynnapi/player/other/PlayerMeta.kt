@@ -4,7 +4,7 @@ class PlayerMeta {
 
     val firstJoin: String? = null
     val lastJoin: String? = null
-    val location: PlayerLocation? = null
+    val location: PlayerLocation = PlayerLocation()
     val playtime: Long = 0
     val tag: PlayerTag? = null
     val veteran: Boolean = false
