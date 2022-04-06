@@ -77,14 +77,14 @@ class Item {
     val category: String? = null
     val rainbowSpellDamageRaw: Number? = null
 
-    val CostPct1: Number? = null;
-    val CostRaw1: Number? = null;
-    val CostPct2: Number? = null;
-    val CostRaw2: Number? = null;
-    val CostPct3: Number? = null;
-    val CostRaw3: Number? = null;
-    val CostPct4: Number? = null;
-    val CostRaw4: Number? = null;
+    val spellCostPct1: Number? = null;
+    val spellCostRaw1: Number? = null;
+    val spellCostPct2: Number? = null;
+    val spellCostRaw2: Number? = null;
+    val spellCostPct3: Number? = null;
+    val spellCostRaw3: Number? = null;
+    val spellCostPct4: Number? = null;
+    val spellCostRaw4: Number? = null;
 
     val sprint: Number? = null
     val sprintRegen: Number? = null
