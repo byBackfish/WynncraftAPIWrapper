@@ -43,6 +43,7 @@ class Item {
     val manaSteal: Number? = null
     val xpBonus: Number? = null
     val lootBonus: Number? = null
+    val lootQuality: Number? = null
     val reflection: Number? = null
     val strengthPoints: Number? = null
     val dexterityPoints: Number? = null
@@ -74,5 +75,22 @@ class Item {
     val identified: Boolean = false
     val skin: String? = null
     val category: String? = null
+    val rainbowSpellDamageRaw: Number? = null
+
+    val CostPct1: Number? = null;
+    val CostRaw1: Number? = null;
+    val CostPct2: Number? = null;
+    val CostRaw2: Number? = null;
+    val CostPct3: Number? = null;
+    val CostRaw3: Number? = null;
+    val CostPct4: Number? = null;
+    val CostRaw4: Number? = null;
+
+    val sprint: Number? = null
+    val sprintRegen: Number? = null
+    val jumpHeight: Number? = null
+
+
+
 
 }
