@@ -86,13 +86,13 @@ class WynnStats(
     }
 
     @Throws(IOException::class)
-    private fun readJsonUrl(url: String): JsonObject {
+    fun readJsonUrl(url: String): JsonObject {
         val jElement = JsonParser().parse(getContents(url))
         return jElement.asJsonObject
     }
 
     @Throws(IOException::class)
-    private fun getContents(url: String): String {
+    fun getContents(url: String): String {
         val url1 = URL(url)
         val conn: URLConnection = url1.openConnection()
         conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 5.1; rv:19.0) Gecko/20100101 Firefox/19.0")
