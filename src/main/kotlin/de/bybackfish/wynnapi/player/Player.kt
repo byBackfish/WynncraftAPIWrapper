@@ -6,6 +6,6 @@ class Player {
     val version: String? = null
     val code: Int = 0
 
-    fun getData() = data[0]
+    public fun getData() = data[0]
 
 }
