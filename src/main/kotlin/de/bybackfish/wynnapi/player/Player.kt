@@ -2,7 +2,7 @@ package de.bybackfish.wynnapi.player
 
 class Player {
 
-    val data = ArrayList<PlayerData>()
+    private val data = ArrayList<PlayerData>()
     val version: String? = null
     val code: Int = 0
 
