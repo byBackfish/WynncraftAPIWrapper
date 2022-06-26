@@ -9,7 +9,7 @@ fun main() {
 
 
     val player = stats.getPlayer("h1red")!!
-    println(player.data[0].classes[0].name)
+    println(player.get().classes[0].name)
 
 }
 
