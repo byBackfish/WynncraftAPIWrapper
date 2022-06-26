@@ -18,6 +18,7 @@ dependencies {
 
 # Usage
 
+## Kotlin
 ```kotlin
 val stats = WynnStats()
 val player = stats.getPlayer("Keldorn") ?: return println("Player not found!")
@@ -28,4 +29,13 @@ val firstClass = classes[0]
 
 ```
 
-* Works similar in Java. Above is a Kotlin example
+## Java
+```java
+WynnStats wynnStats = new WynnStats();
+Player player = wynnStats.getPlayer("GithubCopilot");
+PlayerData playerData = player.get();
+PlayerClasses playerClass = playerData.getClasses().get(0);
+// do stuff here
+
+```
+
