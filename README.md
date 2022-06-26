@@ -21,7 +21,7 @@ dependencies {
 ```kotlin
 val stats = WynnStats()
 val player = stats.getPlayer("Keldorn") ?: return println("Player not found!")
-val data = player.getData() 
+val data = player.get() 
 val classes = player.classes
 val firstClass = classes[0]
 // do stuff here
